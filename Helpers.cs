@@ -73,7 +73,7 @@
 ");
             Helpers.ResetConsoleColor();
 
-            Console.WriteLine("Choose...\n[1] 📄 → 🔤  PDF to Text\n[2] 🔤 → 📄  Text to PDF");
+            Console.WriteLine("Choose...\n[1] 📄 → 🔤  PDF to Text\n[2] 🔤 → 📄  Text to PDF\n[Q] Quit");
         }
 
         // Method to prompt user to quit or restart the app
@@ -93,9 +93,23 @@
             
             if (choice.ToLower().Equals("q"))
             {
-                SetConsoleColor("magenta");
-                Console.WriteLine("\nThanks for using PDF HELPER!");
-                Console.WriteLine(@"
+                // move this to another function so it can be used at beginning of program as well
+                QuitProgram();
+                
+
+            }
+            else if (choice.ToLower().Equals("r"))
+            {
+                Console.Clear();
+                Program.Main();
+            }
+        }
+
+        public static void QuitProgram()
+        {
+            SetConsoleColor("magenta");
+            Console.WriteLine("\nThanks for using PDF HELPER!");
+            Console.WriteLine(@"
  _______      ____     __   .-''-.  .---.  .---.  
 \  ____  \    \   \   /  /.'_ _   \ \   /  \   /  
 | |    \ |     \  _. /  '/ ( ` )   '|   |  |   |  
@@ -107,15 +121,8 @@
 /_______.'   `-..-'        `'-..-'  (_I_)  (_I_)  
                                                   
 ");
-                ResetConsoleColor();
-                Environment.Exit(0);
-
-            }
-            else if (choice.ToLower().Equals("r"))
-            {
-                Console.Clear();
-                Program.Main();
-            }
+            ResetConsoleColor();
+            Environment.Exit(0);
         }
     }
 }

@@ -13,10 +13,11 @@
             // User choice input validation
             while (true)
             {
-                if (string.IsNullOrEmpty(choice) || (choice != "1" && choice != "2"))
+                // add quit option to beginning of program
+                if (string.IsNullOrEmpty(choice) || (choice != "1" && choice != "2" && choice.ToLower() != "q"))
                 {
                     Helpers.SetConsoleColor("red");
-                    Console.WriteLine("❌ Please enter 1 or 2\n");
+                    Console.WriteLine("❌ Please enter 1 or 2 to use the helper, or enter Q to quit\n");
                     Helpers.ResetConsoleColor();
                     choice = Helpers.GetUserInput("➡️ Select:");
                 }
@@ -25,7 +26,7 @@
             Console.WriteLine();
 
             // Handle user choice
-            switch (choice)
+            switch (choice.ToLower())
             {
                 case "1":
                     Console.Clear();
@@ -34,6 +35,9 @@
                 case "2":
                     Console.Clear();
                     AppLogic.OptTextToPdf();
+                    break;
+                case "q":
+                    Helpers.QuitProgram();
                     break;
             }
 

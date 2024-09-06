@@ -5,6 +5,11 @@ PDFHelper is a console application that allows you to:
 1. Convert PDF to Text: Extract and display the text from a PDF.
 2. Convert Text to PDF: Create a PDF from user-entered text, with an optional header.
 
+## PDF location:
+PDFHelper\bin\Debug\net8.0
+<br>
+When entering the file path of a pdf to get its text, only enter the file name and extension of a pdf in this directory.
+
 ## Dependencies
 - .NET SDK
 - Itext

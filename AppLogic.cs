@@ -108,8 +108,34 @@ namespace CodeJam4
                 else break;
             }
 
+            int fontSize = 0;
             string? header = Helpers.GetUserInput("➡️ Enter a header for your new PDF file (press Enter to skip):");
+            // Add input validation for font size
+            if (!string.IsNullOrEmpty(header))
+            {
+                string? fontString = Helpers.GetUserInput("➡️ Enter a font size for your pdf header (press Enter to skip, default is 12):");
 
+                while (true)
+                {
+                    if (string.IsNullOrEmpty(fontString))
+                    {
+                        fontSize = 12;
+                        break;
+                    }
+                    else if (!int.TryParse(fontString, out fontSize) || fontSize < 1 || fontSize > 999)
+                    {
+                        Helpers.SetConsoleColor("red");
+                        Console.WriteLine("❌ Invalid font size. Please enter a valid font size between 1 and 999.");
+                        Helpers.ResetConsoleColor();
+                        fontString = Helpers.GetUserInput("➡️ Enter a font size for your pdf header (press Enter to skip, default is 12):");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            
             Console.WriteLine("➡️ Enter PDF content (press Ctrl+Z to end):");
             Console.WriteLine("----------");
             string txt = GetMultiLineTxt(name);
@@ -118,7 +144,7 @@ namespace CodeJam4
             {
                 ConvertTextToPdf(txt, name);
             }
-            else PdfHeader.ConvertTextToPdfWithHeader(txt, name, header);
+            else PdfHeader.ConvertTextToPdfWithHeader(txt, name, header, fontSize);
         }
 
         // "TEXT TO PDF" CONVERSION METHOD
