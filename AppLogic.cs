@@ -3,6 +3,10 @@ using iText.Layout.Element;
 using iText.Layout;
 using iText.Kernel.Pdf.Canvas.Parser;
 using System.Text;
+using System.Reflection;
+using System;
+using System.IO;
+using System.Diagnostics;
 
 namespace CodeJam4
 {
@@ -146,6 +150,10 @@ namespace CodeJam4
                         Console.WriteLine("\n----------");
                         Helpers.SetConsoleColor("green");
                         Console.WriteLine($"\n✅ You successfully created a PDF called {name}.pdf!");
+                        string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                        string parentDirectory = Directory.GetParent(currentPath).Parent.Parent.FullName; //getting the parent directory of the project (should be portable across machines)
+                        parentDirectory = (parentDirectory + "\\" + name + ".pdf"); //appending the pdf file to the path
+                        Console.WriteLine("Copy this path into your file explorer to view your brand new PDF! : " + parentDirectory);
                         Helpers.ResetConsoleColor();
                         break;
                     }
